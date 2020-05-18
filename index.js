@@ -3,6 +3,7 @@
 const express = require('express');
 const cors = require('cors')
 const app = express();
+const uuid = require('uuid')
 
 app.use(cors());
 
@@ -15,12 +16,12 @@ const data = {
   channels: [ {
     name: "General",
     slug: "general",
-    id: "0",
+    id: uuid.v4(),
     content: [ "posts will go here" ]
   }, {
     name: "Random",
     slug: "random",
-    id: "1",
+    id: uuid.v4(),
     content: [ "posts will go here" ]
   } ]
 }

@@ -34,6 +34,17 @@ const data = {
   } ]
 }
 
+
+const channelsHashmap =
+  data.channels.reduce(
+    (accumulator, current) => ({
+      ...accumulator,
+      [current.id] : current
+    }),
+    {}
+  )
+
+
 app.get('/channelList/:username', (req, res) => 
     // Eventually the idea here is that there would be more than one username, but obviously right now there isn't
     res.json({
@@ -52,7 +63,7 @@ app.get('/channel/:id', (req, res) =>
           'Access-Control-Allow-Origin' : '*'
       },
       statusCode: 200,
-      body: JSON.stringify(data.channels.find(({ id }) => id === req.params.id)),
+      body: JSON.stringify(channelsHashmap[req.params.id]),
     })
   );
 

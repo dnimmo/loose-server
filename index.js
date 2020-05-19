@@ -16,22 +16,44 @@ const data = {
   channels: [ {
     name: "General",
     slug: "general",
+    description: "The general channel: Everyone is in here!",
+    id: uuid.v4(),
+    content: [ "posts will go here" ]
+  }, {
+    name: "Pet pics",
+    slug: "pet-pics",
+    description: "For pictures of cats and inferior animals.",
     id: uuid.v4(),
     content: [ "posts will go here" ]
   }, {
     name: "Random",
     slug: "random",
+    description: "For the stuff that doesn't fit into any other channels.",
     id: uuid.v4(),
     content: [ "posts will go here" ]
   } ]
 }
 
-app.get('/', (req, res) => res.json({
-  headers: { 
-      'Access-Control-Allow-Origin' : '*'
-  },
-  statusCode: 200,
-  body: JSON.stringify(data),
-}));
+app.get('/channelList/:username', (req, res) => 
+    // Eventually the idea here is that there would be more than one username, but obviously right now there isn't
+    res.json({
+      headers: { 
+          'Access-Control-Allow-Origin' : '*'
+      },
+      statusCode: 200,
+      body: JSON.stringify(data.channels.map(({ slug, id }) => ({slug, id}))),
+    })
+  );
+
+
+app.get('/channel/:id', (req, res) => 
+    res.json({
+      headers: { 
+          'Access-Control-Allow-Origin' : '*'
+      },
+      statusCode: 200,
+      body: JSON.stringify(data.channels.find(({ id }) => id === req.params.id)),
+    })
+  );
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

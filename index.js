@@ -1,9 +1,9 @@
-// Obviously this ought to be doing something more interesting, but right now it...well, doesn't. It's just here so that I could make sure that the Loose client app was actually able to request data from an API.
-
 const express = require('express');
-const cors = require('cors')
+const cors = require('cors');
 const app = express();
-const uuid = require('uuid')
+const { general } = require('./channels/general');
+const { projects } = require('./channels/projects');
+const { blogs } = require('./channels/blogs')
 
 app.use(cors());
 
@@ -13,24 +13,26 @@ const port = 8000;
 
 const data = {
   username: 'Nimmo',
-  channels: [ {
-    name: "General",
-    slug: "general",
-    description: "The general channel: Everyone is in here!",
-    id: uuid.v4(),
-    content: [ "posts will go here" ]
+  channels: [ 
+    {
+      name: "General",
+      slug: "general",
+      description: "David Nimmo: A full stack (though front-end leaning) engineer, based in Newcastle, England. I've worked remotely since 2016, and I have no plans to change that any time soon!",
+      id: "general",
+      content: general
+    },
+    {
+    name: "Blogs",
+    slug: "blogs",
+    description: "Soemtimes I write things! You can find examples of those times below.",
+    id: "blogs",
+    content: blogs
   }, {
-    name: "Pet pics",
-    slug: "pet-pics",
-    description: "For pictures of cats and inferior animals.",
-    id: uuid.v4(),
-    content: [ "posts will go here" ]
-  }, {
-    name: "Random",
-    slug: "random",
-    description: "For the stuff that doesn't fit into any other channels.",
-    id: uuid.v4(),
-    content: [ "posts will go here" ]
+    name: "Projects",
+    slug: "projects",
+    description: "A collection of projects that you can look at the source code for.",
+    id: "projects",
+    content: projects
   } ]
 }
 

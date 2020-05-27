@@ -19,12 +19,12 @@ const data = {
       slug: "general",
       description: "David Nimmo: A full stack (though front-end leaning) engineer, based in Newcastle, England. I've worked remotely since 2016, and I have no plans to change that any time soon!",
       id: "general",
-      content: general
+      content : general 
     },
     {
     name: "Blogs",
     slug: "blogs",
-    description: "Soemtimes I write things! You can find examples of those times below.",
+    description: "Sometimes I write things! You can find examples of those times below.",
     id: "blogs",
     content: blogs
   }, {

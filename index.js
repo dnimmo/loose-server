@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const { general } = require('./channels/general');
+const { employmentHistory } = require('./channels/employment_history');
 const { projects } = require('./channels/projects');
 const { blogs } = require('./channels/blogs')
 
@@ -17,9 +18,16 @@ const data = {
     {
       name: "General",
       slug: "general",
-      description: "David Nimmo: A full stack (though front-end leaning) engineer, based in Newcastle, England. I've worked remotely since 2016, and I have no plans to change that any time soon!",
+      description: "Newcastle-based software engineer.",
       id: "general",
       content : general 
+    },
+    {
+      name: "Employment History",
+      slug: "employment-history",
+      description: "Information about my employment history. Details in threads.",
+      id: "employment-history",
+      content: employmentHistory
     },
     {
     name: "Blogs",
